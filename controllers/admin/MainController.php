@@ -20,9 +20,9 @@ Class MainController extends AppController{
     public function beforeAction($action){
         $this->vkParams = [
             'group_id' => '182016682',
-            'token' => '4443368a0eac788c0ffa0d0ae7708eae0f908cb92b50d8e35450769c8797c78088084b396ac80baf91ffa',
-            'client_id' => '6973346',
-            'client_secret' => 'UZ177WIF0bu875PXb0j8',
+            'token' => 'b518b18c594c480b462ee0835a08b8dea5061a43bc8c8b2610faf85291af656b1548836d52e7b9612c78f',
+            'client_id' => '6995449',
+            'client_secret' => '9SHh0a9Ke6vaPwb2SYlD',
         ];
 
         $this->user_root = Yii::$app->db->createCommand($this->user_root_sql)->bindValues([':id' => $_SESSION['id']])->queryAll()[0];
@@ -53,7 +53,7 @@ Class MainController extends AppController{
                                 if($model->save(false)){
                                     if(isset($_POST['chekVk'])){
                                         $postVk = new PostVk($this->vkParams, $model);
-                                        // $postVk->pubNew(1);
+                                        $postVk->pubNew(1);
                                     }
                                     Yii :: $app->session->setFlash('success', 'Данные приняты');
                                     return $this->refresh();

@@ -33,96 +33,57 @@ class PostVk extends Model{
     public function pubNew($from_group = 0){
         $message = $this->model->title.' 
                     '.$this->model->body;
-        // if($this->model->img){
-        //     $url = 'https://api.vk.com/method/photos.getWallUploadServer?';
-        //     $params = [
-        //         'group_id'=>$this->group_id,
-        //         'access_token'=> $this->access_token,
-        //         'v' => '5.95',
-        //     ];
-        //     $url = $this->curl($url,$params)->response->upload_url;
-        //     // debug($this->curl($url,['photo'=> curl_file_create($this->model->postImg['tempName'],$this->model->postImg['type'],$this->model->img)]));
-        //     debug($this->uploadImage($url,$_SERVER['DOCUMENT_ROOT'].'/upload/'.$this->model->img));
-        //     die;
-        // }
-        // return;
+        if($this->model->img){
+            $url = 'https://api.vk.com/method/photos.getWallUploadServer?';
+            $params = [
+				'group_id'=>$this->group_id,
+                'access_token'=> $this->access_token,
+                'v' => '5.95',
+            ];
+			
+			$url = $this->curl($url,$params)->response->upload_url;
+			$request = $this->curl($url, ['photo'=>curl_file_create($this->model->path , mime_content_type($this->model->path), basename($this->model->path))], true);
+			
+			$url = 'https://api.vk.com/method/photos.saveWallPhoto?';
+			$params =[
+				'photo'        => $request->photo,
+				'server'       => $request->server,
+				'hash'       => $request->hash,
+				'group_id'     => $this->group_id,
+				'access_token' => $this->access_token,
+				'v'=>'5.95',
+			];
+
+			$img_response = $this->curl($url,$params)->response[0];
+			// debug($img_response,1);
+        }
+		
         $url ='https://api.vk.com/method/wall.post?';
         $params = [
-            'owner_id' => '-'.$this->group_id,
+            'owner_id'     => '-'.$this->group_id,
             'access_token' => $this->access_token,
             'from_group'=>$from_group,
-            'message'=>strip_tags($message),
+			'message'=>strip_tags($message),
+			'attachments' =>($img_response) ? 'photo'.$img_response->owner_id.'_'.$img_response->id : false,
             'v'=>'5.95',
         ];
         return json_decode(file_get_contents($url.http_build_query($params)));
     }
-    public function curl($url,$dataoptions){
+    public function curl($url, $dataoptions, $multipart = false){
             // debug([$url,$dataoptions]);
         $ch = curl_init($url);
+			if($multipart){
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data; charset=UTF-8'));
+			}
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
             curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-            curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
+			curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
             curl_setopt($ch,CURLOPT_POST,true);
-            curl_setopt($ch,CURLOPT_POSTFIELDS,$dataoptions);
+			curl_setopt($ch,CURLOPT_POSTFIELDS,$dataoptions);
             $result = curl_exec($ch);
         curl_close($ch);
         return json_decode($result);
         // return $result;
     }
 
-    public function method($method, $params = null) {
-
-        $p = "";
-        if( $params && is_array($params) ) {
-            foreach($params as $key => $param) {
-                $p .= ($p == "" ? "" : "&") . $key . "=" . urlencode($param);
-            }
-        }
-        $response = file_get_contents($this->url . $method . "?" . ($p ? $p . "&" : "") . "access_token=" . $this->access_token);
-
-        if( $response ) {
-            return json_decode($response);
-        }
-        return false;
-    }
-
-    public function uploadImage($server,$file, $group_id = null, $album_id = null) {
-
-        $params = array();
-        if( $group_id ) {
-            $params['group_id'] = $group_id;
-        }
-        if( $album_id ) {
-            $params['album_id'] = $album_id;
-        }
-
-    // $postparam=array("photo"=>"@".$file);
-    $postparam=array("photo"=>curl_file_create($this->model->img, $this->model->postImg['type'], $_SERVER['DOCUMENT_ROOT'].'/upload/'.$this->model->img));
-    debug(realpath('upload/'.$this->model->img));
-    //Отправляем файл на сервер
-    $ch = curl_init($server);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS,$postparam);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data; charset=UTF-8'));
-    $json = json_decode(curl_exec($ch));
-    curl_close($ch);
-    // debug($json);
-
-    //Сохраняем файл в альбом
-    $photo = $this->method("photos.save", array(
-      "server" => $json->server,
-      "photos_list" => $json->photos_list,
-    //   "album_id" => $album_id,
-      "hash" => $json->hash,
-      'gid' => $group_id
-    ));
-    
-
-    if( isset($photo->response[0]->id) ) {
-      return $photo->response[0]->id;
-    } else {
-      return false;
-    }
-  }
 }

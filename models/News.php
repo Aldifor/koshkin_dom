@@ -7,7 +7,7 @@ use app\models\User;
 use yii\db\ActiveRecord;
 
 class News extends ActiveRecord{
-    public $postImg;
+    public $path;
 
     public static function tableName(){
         return 'new';
@@ -87,13 +87,11 @@ class News extends ActiveRecord{
     }
     public function upload(){
         if ($this->validate()) {
-            $this->postImg = [
-                'tempName'=> $this->img->tempName,
-                'type'=>$this->img->type,
-                ];
             $fileName = $this->getFileName();
             $this->img->saveAs($_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName );
             $this->img = $fileName;
+            // $this->path = 'http://'.$_SERVER['HTTP_HOST'] . '/uploads/' . $fileName;
+            $this->path = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $fileName;
             return true;
         } else {
             return false;
