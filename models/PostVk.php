@@ -65,6 +65,7 @@ class PostVk extends Model{
             'from_group'=>$from_group,
 			'message'=>strip_tags($message),
 			'attachments' =>($img_response) ? 'photo'.$img_response->owner_id.'_'.$img_response->id : false,
+			// 'attachments' =>[($img_response) ? 'photo'.$img_response->owner_id.'_'.$img_response->id : false,'http://'.$_SERVER[]],
             'v'=>'5.95',
         ];
         return json_decode(file_get_contents($url.http_build_query($params)));
