@@ -19,35 +19,9 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'FfuQJmy4-Lhcmh_dmnjwyfnJTUHCbWeT',
         ],
-        
-        // 'vk' => [
-        //     'class' => 'jumper423\VK',
-        //     'clientId' => '6995449',
-        //     'clientSecret' => '9SHh0a9Ke6vaPwb2SYlD',
-        //     'access_token' => '',
-        //     'delay' => 0.7, // Минимальная задержка между запросами
-        //     'delayExecute' => 120, // Задержка между группами инструкций в очереди
-        //     'limitExecute' => 1, // Количество инструкций на одно выполнении в очереди
-        //     'captcha' => 'captcha', // Компонент по распознованию капчи
-        // ],
-        // 'authClientCollection' => [
-        //     'class' => 'yii\authclient\Collection',
-        //     'clients' => [
-        //         'vkontakte' => [
-        //             'class' => 'jumper423\VK',
-        //             'clientId' => '6995449',
-        //             'clientSecret' => '9SHh0a9Ke6vaPwb2SYlD',
-        //             'access_token' => '',
-        //             'delay' => 0.7,
-        //             'delayExecute' => 120,
-        //             'limitExecute' => 1,
-        //             'captcha' => 'captcha',
-        //             'scope' => 'friends,photos,pages,wall,groups,email,stats,ads,offline,notifications', //,messages,nohttps
-        //             'title' => 'ВКонтакте'
-        //         ],
-        //     ],
-        // ],
-
+        'vk' => [
+            'class' => 'app\components\Vk',
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

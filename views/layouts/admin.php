@@ -41,7 +41,6 @@ AppAsset::register($this);
                     <ul class="navbar-nav">
                         <?php
                         foreach($this->context->navbar as $item){
-                            if(!($item['nameNav'] == 'admin')){
                             ?>
                                 <li class="nav-item">
                                     <a class="nav-link
@@ -54,9 +53,6 @@ AppAsset::register($this);
                                             <?=$item['name']?>
                                         </a>
                                 </li>
-                            <?php
-                            }
-                            ?>
                         <?php
                         }
                         ?>

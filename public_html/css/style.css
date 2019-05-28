@@ -2,7 +2,7 @@ body{
     height: 100%;
     background: #1d1d1d url(/img/background.png) repeat ;
     color:#e9ecef;
-    font-family: "Open Sans", Tahoma, sans-serif;
+    font-family: "Open Sans", robots, sans-serif;
     font-stretch: expanded;
     box-shadow: inset 0 0 6rem rgba(0,0,0,1)!important;
 }
@@ -20,7 +20,9 @@ h5{
     box-shadow:0 0 6rem rgba(0,0,0,1)!important;
     padding: 0;
 }
-
+.redactor-editor{
+    color:#000!important;
+}
 .row{
     margin-right: 0;
     margin-left: 0;
@@ -76,40 +78,40 @@ width:4px;
     background:transparent;
 }
 /* reg-modal start */
-.reg-modal{
-    background: #1d1d1d url(/img/88.jpg)no-repeat;
-    background-size: 100% 100%;
-    color: yellowgreen;
-}
+    .reg-modal{
+        background: #1d1d1d url(/img/88.jpg)no-repeat;
+        background-size: 100% 100%;
+        color: yellowgreen;
+    }
 
-.modal-item{
-    border: 0;
-}
-.module-header{
-    margin-top:1rem;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
-}
-.a_btn{
-    width: 100%;
-}
+    .modal-item{
+        border: 0;
+    }
+    .module-header{
+        margin-top:1rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .a_btn{
+        width: 100%;
+    }
 /* reg-modal end */
 
 
 /* register start */
-.form_reg{
-    background-image: url(/img/wallpaper-black-cat-8.jpg);
-    background-size: 100% 100%;
-}
-.reg_label{
-    margin-top:0.5rem;
-}
-.lable{
-    text-align: center;
-    font-size: 3rem;
-    font-family: cursive;
-    color: yellowgreen;
-}
+    .form_reg{
+        background-image: url(/img/wallpaper-black-cat-8.jpg);
+        background-size: 100% 100%;
+    }
+    .reg_label{
+        margin-top:0.5rem;
+    }
+    .lable{
+        text-align: center;
+        font-size: 3rem;
+        font-family: cursive;
+        color: yellowgreen;
+    }
 /* register end */
 .feedback{
  font-size: 1rem;
@@ -320,6 +322,7 @@ a:hover{
     }
     .post_body{
         padding: 1rem;
+        color: #e9ecef!important
     }
     .post_img_cont{
         padding: 1rem;

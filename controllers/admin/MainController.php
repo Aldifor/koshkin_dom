@@ -4,6 +4,7 @@ use Yii;
 use app\models\News;
 use app\models\Post;
 use app\models\User;
+use app\components\Vk;
 use app\models\PostVk;
 use app\models\KosList;
 use app\models\Profation;
@@ -47,12 +48,12 @@ Class MainController extends AppController{
                 $model->date = date('Y-m-d H:i:s');
                 if($model->validate()){
                     if(true){
-                        // debug($_FILES);
                         if($_FILES['News']['name']['img']){
                             if($model->upload()){
                                 if($model->save(false)){
                                     if(isset($_POST['chekVk'])){
-                                        $postVk = new PostVk($this->vkParams, $model);
+                                        // $postVk = new Yii :: $app->vk($this->vkParams, $model);
+                                        $postVk = new Vk($this->vkParams, $model);
                                         $postVk->pubNew(1);
                                     }
                                     Yii :: $app->session->setFlash('success', 'Данные приняты');
@@ -66,7 +67,8 @@ Class MainController extends AppController{
                         else{
                             if($model->save(false)){
                                 if(isset($_POST['chekVk'])){
-                                    $postVk = new PostVk($this->vkParams, $model);
+                                    // $postVk = new Yii :: $app->vk($this->vkParams, $model);
+                                    $postVk = new Vk($this->vkParams, $model);
                                     $postVk->pubNew(1);
                                 }
                                 Yii :: $app->session->setFlash('success', 'Данные приняты');

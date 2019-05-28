@@ -1,7 +1,7 @@
  <?php
     use yii\helpers\Html;
     use yii\widgets\ActiveForm;
-    use mihaildev\ckeditor\CKEditor;
+    use vova07\imperavi\Widget;
 ?>
 <div class="container col-10 py-3">
     <?php if(Yii::$app->session->hasFlash('success')):?>
@@ -27,23 +27,34 @@
         <?= $form->field($model, 'title')->input('text',['class'=>'form-control border-success']) ?>
 
         <label class=" ">Выбрать файл</label>
-        <div class="custom-file">
+        <div class="custom-file mb-2">
             <?= $form->field($model, 'img')->fileInput(['class'=>' custom-file-input  form-control '])->label('Прекрeпить изображение',['class'=>'custom-file-label form-control border-success']) ?>
         </div>
-
-        <?= $form->field($model, 'body')->widget(CKEditor::className(),[
-                'editorOptions' => [
-                    'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-                    'inline' => false, //по умолчанию false
+        
+        <?= $form->field($model, 'body')->widget(Widget::className(),[
+                'settings' => [
+                    'lang' => 'ru',
+                    'minHeight' => 200,
+                    'plugins' => [
+                        // 'clips',
+                        'fullscreen',
+                    ],
+                    // 'clips' => [
+                    //     ['Lorem ipsum...', 'Lorem...'],
+                    //     ['red', '<span class="label-red">red</span>'],
+                    //     ['green', '<span class="label-green">green</span>'],
+                    //     ['blue', '<span class="label-blue">blue</span>'],
+                    // ],
                 ],
             ]); ?>
-        <div class="form-check">
+        
+        <div class="form-check mb-2 ">
             <input class="form-check-input" type="checkbox" name="chekVk" value="" id="Check">
             <label class="form-check-label" for="Check">
                 Опубликовать в ВК
             </label>
         </div>
-    <?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton('Опубликовать', ['class' => 'btn btn-success']) ?>
 <?php
 ActiveForm::end() ?>
 </div>

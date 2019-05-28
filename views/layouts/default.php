@@ -39,16 +39,14 @@ AppAsset::register($this);
             <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                 <ul class="navbar-nav">
                     <?php
-                    if(!(isset($_SESSION['login'])))
-                        {
+                    if(!(isset($_SESSION['login']))){
                         ?>
                             <li class="nav-item d-sm-none">
                                 <a class="nav-link light" href="#" data-toggle="modal" data-target="#log-modal">Авторизация</a>
                             </li>
                         <?php
                         }
-                        else
-                        {
+                        else {
                         ?>
                             <li class="nav-item d-sm-none">
                                 <a class="nav-link a-light" href="#" data-toggle="modal" data-target="#logout-modal">Вы зашли как: <?=$_SESSION['nicname']?></a>
