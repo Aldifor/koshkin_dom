@@ -84,6 +84,8 @@
 
             include 'blocks/input_group.php';
 
+        }else{
+            echo'<div class="d-none" id="user_id" data-user="'.$_SESSION["id"].'"></div>';
         }
         ?>
     </div>

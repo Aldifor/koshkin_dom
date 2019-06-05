@@ -89,11 +89,7 @@ function out_smiles(type_smile){
     }
 });
 }
-function $_GET(key)  {
-    var p = window.location.search;
-    p = p.match(new RegExp(key + '=([^&=]+)'));
-    return p ? p[1] : false;
-}
+
 function mes_scrol(){
     var div = document.getElementById('comment_body'); // id div'a
     $('#comment_body').scrollTop(div.scrollHeight-div.offsetHeight);

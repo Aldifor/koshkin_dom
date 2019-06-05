@@ -19,7 +19,7 @@ class Chat extends Model{
                                 ( SELECT from_us, MAX(id) max_id FROM messages WHERE to_us = :us_id GROUP BY from_us ) AS mes2 ON 
                                     mes.from_us = mes2.from_us AND mes.id = mes2.max_id ORDER BY mes.id DESC";
             $params = [
-                ':us_id' => $_SESSION['id'],
+                ':us_id' => $us_id,
             ];
         }
         elseif(!$message){
@@ -43,7 +43,7 @@ class Chat extends Model{
             if(!($type != 'private' && !$mes_id)) $query.=$order;
             $params  = [
                 ':to_us' =>$to_us,
-                ':from_us' =>$_SESSION['id'],
+                ':from_us' =>$us_id,
                 ':mes_id' => $mes_id,
             ];
             // debug($params);
@@ -54,7 +54,7 @@ class Chat extends Model{
 
                 $query = "INSERT INTO messages ($type, from_us, to_us, message, date) VALUES (1, :us_id, :to_us, :message, :datenow)";
                 $params = [
-                    ':us_id' => $_SESSION['id'],
+                    ':us_id' => $us_id,
                     ':to_us' => $to_us,
                     ':message' => $message,
                     ':datenow' => $datenow
@@ -84,7 +84,7 @@ class Chat extends Model{
             $datenow = date('Y-m-d H:i:s');
             $query = "INSERT INTO comment (new_id, us_id, message, date) VALUES (:new_id, :us_id, :message, :datenow)";
             $params = [
-                ':us_id' => $_SESSION['id'],
+                ':us_id' => $us_id,
                 ':new_id' => $new_id,
                 ':message' => $message,
                 ':datenow' => $datenow
@@ -130,7 +130,7 @@ class Chat extends Model{
                         <div class="row justify-content-between px-2 pt-2">
                             <div data-toggle="tooltip" class="nicname"
                                 title="';
-                                if($item['us_id']!= $_SESSION['id']){
+                                if($item['us_id']!= $us_id){
                                         $html .="<img class='prof_icon' src='" . $item['prof_icon'] . "'>";
                                     $html .='<br>
                                         <span>' . $item['name'] . '</span>
@@ -147,7 +147,7 @@ class Chat extends Model{
                                         }
                                 }
                                     $html .='">';
-                                    if($item['us_id']!= $_SESSION['id']){
+                                    if($item['us_id']!= $us_id && $_SERVER['REDIRECT_URL'] !=  '/communication/private'){
                                         $html .= ' <a href="/communication/private?id='.$item['us_id'].'">'.$item['nicname'].'</a>';
                                     }else{
                                         $html .= $item['nicname'];

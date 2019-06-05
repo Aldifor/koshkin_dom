@@ -15,6 +15,6 @@ if($this->context->user_root['is_party']){
     </div>
 </div>
 <?php
-$this->registerJsFile( '@web/js/scripts/chat_script.js', $options = ['depends'=>['yii\web\YiiAsset','yii\bootstrap\BootstrapAsset']]);
+$this->registerJsFile( '@web/js/scripts/chat_script.js', $options = ['depends'=>['yii\web\YiiAsset','app\assets\AppAsset']]);
 ?>
 <!-- <script src="/public/scripts/chat_script.js"></script> -->

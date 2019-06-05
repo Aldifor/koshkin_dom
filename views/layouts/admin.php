@@ -26,7 +26,7 @@ AppAsset::register($this);
             <div class="img-baner w-100 align-items-center justify-content-end d-flex" >
                 <img src="/img/baneritem.jpg" class="w-100" alt="">
             </div>
-            <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg top navbar-dark bg-dark">
                 <div class="justify-conent-start">
                     <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarContent" 
                             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">

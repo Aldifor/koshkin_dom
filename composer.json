@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "jumper423/yii2-vk": "2.*",
-        "vova07/yii2-imperavi-widget": "^2.0"
+        "vova07/yii2-imperavi-widget": "^2.0",
+        "cboden/ratchet": "^0.4.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

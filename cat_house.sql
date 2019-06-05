@@ -45,11 +45,11 @@ INSERT INTO `comment` (`id`, `new_id`, `us_id`, `message`, `date`) VALUES
 (2, 8, 18, 'sadsad', '2019-03-02 17:00:42'),
 (3, 8, 18, 'eeq&nbsp; ', '2019-03-02 17:01:10'),
 (4, 12, 18, 'asdsd', '2019-03-02 17:09:21'),
-(5, 11, 18, 'qweqwe', '2019-03-02 17:13:17'),
+(5, 11, 18, 'toptop', '2019-03-02 17:13:17'),
 (6, 11, 18, ' ', '2019-03-02 17:13:26'),
 (7, 11, 18, '  ', '2019-03-02 17:13:42'),
 (8, 11, 18, '\n                  ', '2019-03-03 07:05:40'),
-(9, 10, 18, 'wqev qwed awesdffs d:standart-6: ', '2019-03-03 07:13:55'),
+(9, 10, 18, 'wqev topd awesdffs d:standart-6: ', '2019-03-03 07:13:55'),
 (10, 10, 18, ':standart-8: ', '2019-03-03 07:14:03'),
 (11, 10, 18, '\n                :standart-4: ', '2019-03-03 07:14:50'),
 (12, 10, 18, '\n                :standart-6: ', '2019-03-03 07:15:21'),
@@ -246,7 +246,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`new_user`, `admit`, `is_party`, `profation`, `post`, `root`, `login`, `name`, `nicname`, `email`, `usericon`, `password`, `id`) VALUES
-(0, 1, 1, 11, 1, 'admin', 'qwerty@mal.ru', 'Максим', '\"Эльфийк@', 'qwerty@mal.ru', '', '202cb962ac59075b964b07152d234b70', 3);
+(0, 1, 1, 11, 1, 'admin', 'toprty@mal.ru', 'Максим', '\"Эльфийк@', 'toprty@mal.ru', '', '202cb962ac59075b964b07152d234b70', 3);
 
 --
 -- Индексы сохранённых таблиц

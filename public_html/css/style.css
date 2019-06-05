@@ -178,7 +178,7 @@ textarea:focus,input:focus{
         border:1px solid;
         border-bottom: 0;
         border-top: 0;
-        height: 70px;
+        height: 120px;
         overflow:scroll;
 
     }
@@ -186,7 +186,7 @@ textarea:focus,input:focus{
         overflow:hidden;
         /* overflow-y:scroll; */
         border-radius: 0 0 6px 6px;
-        height: 100px;
+        height: 150px;
     /* z-index: 20; */
     }
     .smile{
@@ -335,6 +335,7 @@ a:hover{
         width: auto;
         margin: auto;
         max-height: 600px;
+		max-width: 80%;
         object-fit: cover;
         object-position: center;
     }

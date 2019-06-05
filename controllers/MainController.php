@@ -13,7 +13,8 @@ use app\models\Profation;
 
 Class MainController extends AppController{
     public function beforeAction($action){
-
+        // $json = '{"user_id":"asdasdasdasdas"}';
+        // dd(json_decode($json),1);
         $this->navbar = Navbar::find()->asArray()->all();
 
         return parent::beforeAction($action);
