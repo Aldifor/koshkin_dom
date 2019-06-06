@@ -43,7 +43,7 @@ if(message!=""){
             async: false,
             data: data,
             success: function (html) {
-                $('#comment_body').append(html);
+                $('#comment_body').prepend(html);
                 mes_scrol();
                 $('#comment_body').show('fast');
                 $('#mes-input').text('');

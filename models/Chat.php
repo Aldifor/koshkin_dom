@@ -69,7 +69,7 @@ class Chat extends Model{
             ];
         }
         $mes = Yii::$app->db->createCommand($query)->bindValues($params)->queryAll();
-        return Chat::mesBlock( Chat::replaceSmile($mes) );
+        return Chat::mesBlock( Chat::replaceSmile($mes),$us_id);
     }
     public static function getSmile($type_smile){
         $html =  '<div class="smile_content row">';
@@ -81,6 +81,7 @@ class Chat extends Model{
     }
     public static function inComment($params){
         extract($params);
+        
             $datenow = date('Y-m-d H:i:s');
             $query = "INSERT INTO comment (new_id, us_id, message, date) VALUES (:new_id, :us_id, :message, :datenow)";
             $params = [
@@ -103,7 +104,7 @@ class Chat extends Model{
                 ':last_id' => $last_id
             ];
         $mes = Yii::$app->db->createCommand($query)->bindValues($params)->queryAll();
-        return Chat::mesBlock( Chat::replaceSmile($mes) );
+        return Chat::mesBlock( Chat::replaceSmile($mes),$us_id);
     }
     public static function replaceSmile($mes){
         $serch_id = "/\w+-\d\d?/";
@@ -120,7 +121,7 @@ class Chat extends Model{
             }
         return $mes;
     }
-    public static function mesBlock($mes){
+    public static function mesBlock($mes,$us_id){
         $html = '';
         foreach($mes as $item){
             $item['date'] = Date :: explodeDate($item['date'],true);

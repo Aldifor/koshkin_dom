@@ -83,7 +83,7 @@ Class MainController extends AppController{
             $news = $arr['news']??false;
 
         if($arr['comments'])
-            $comments = Chat :: mesBlock(array_reverse($arr['comments']));
+            $comments = Chat :: mesBlock(array_reverse($arr['comments']),$_SESSION['id']);
 
         if(!$id)
             foreach ($news as $k => $new){
@@ -161,6 +161,7 @@ Class MainController extends AppController{
             'message' => filter_input(INPUT_POST,'message',FILTER_SANITIZE_STRING) ?? false,
             'new_id' => filter_input(INPUT_POST,'new_id',FILTER_SANITIZE_STRING) ?? false,
             'restore' => filter_input(INPUT_POST,'restore',FILTER_SANITIZE_STRING) ?? false,
+          	'us_id'=>$_SESSION['id'],
         ];
     }
     public function avtoriz(){

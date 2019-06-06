@@ -7,17 +7,20 @@ var is_socket = false;
 
 $(document).ready(function(){
     user_id = $('#user_id').attr('data-user');
-    if( $_GET('id') != ''){
+    if( $_GET('id') !== ''){
         to_us = $_GET('id');
         type_chat = 'private';
         // out_content(type_chat, to_us);
-    }else if(document.querySelector('#ulm') == null){
+    }else if(document.querySelector('#ulm') === null){
         type_chat = 'general';
         // out_content(type_chat,false);
     }
     if ('WebSocket' in window && (typeof WebSocket === 'function' || typeof WebSocket === 'object')) { // supports WebSocket
-        socket = new WebSocket('ws://localhost:5432');
-        console.log(socket);
+        // socket = new WebSocket('ws://cu45229.tmweb.ru:8080');
+        //socket = new WebSocket('ws://echo.websocket.org/');
+        // socket = new WebSocket('ws://echo.websocket.org/');
+      	socket = new WebSocket('ws://localhost:8081')
+        // console.log(socket);
         socket.onopen = function(e) {
             is_socket = true;
             if(document.location.pathname == '/communication/private' && !to_us){

@@ -1,0 +1,3 @@
+<?php
+/*|{"0":{"username":"cu45229","path":"\/home\/c\/cu45229\/controllers\/MainController.php","focused":false},"1":{"username":"cu45229","path":"\/home\/c\/cu45229\/models\/Chat.php","focused":false},"3":{"username":"cu45229","path":"\/home\/c\/cu45229\/commands\/SocketController.php","focused":false},"4":{"username":"cu45229","path":"\/home\/c\/cu45229\/public_html\/js\/scripts\/chat_script.js","focused":true}}|*/
+?>
