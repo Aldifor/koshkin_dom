@@ -21,7 +21,8 @@ $(document).ready(function(e){
     //     type_chat = 'general';
         
     // }
-    socket = new WebSocket('ws://gildkoshkindom.ru:8081');
+    // socket = new WebSocket('ws://gildkoshkindom.ru:8081');
+    socket = new WebSocket('ws://localhost:8081');
         socket.onopen = function(e) {
             if(document.location.pathname == '/communication/private' && !to_us){
                 data = {

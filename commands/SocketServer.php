@@ -19,18 +19,14 @@ class SocketServer implements MessageComponentInterface
    
     public function onOpen(ConnectionInterface $conn)
     {
-        if(!Yii::$app->db->isActive){
-            Yii::$app->db->open();
-        }
+        $this->ping();
         $this->clients->attach($conn);
         echo "New connection! ".$conn->resourceId;
     }
 
     public function onMessage(ConnectionInterface $from, $data)
     {
-        if(!Yii::$app->db->isActive){
-            Yii::$app->db->open();
-        }
+        $this->ping();
         $numRecv = count($this->clients) - 1;
         $data = json_decode($data,true);
 
@@ -81,5 +77,13 @@ class SocketServer implements MessageComponentInterface
     {
         echo "An error has occurred: {$e->getMessage()}\n";
         $conn->close();
+    }
+    public function ping() { 
+        try { 
+        Yii::$app->db->createCommand('SELECT 1')->query(); 
+        } catch (\yii\db\Exception $exception) { 
+        Yii::$app->db->close(); 
+        Yii::$app->db->open(); 
+        } 
     }
 }
