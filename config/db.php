@@ -3,10 +3,10 @@
 return [
     'class' => 'yii\db\Connection',
     //'dsn' => 'mysql:host=localhost;dbname=cat_house',
-     'dsn' => 'mysql:host=localhost;dbname=cu45229_cathouse',
+     'dsn' => 'mysql:host=localhost;dbname=cats',
     //'username' => 'root',
     //'password' => '',
-     'username' => 'cu45229_cathouse',
+     'username' => 'cats',
      'password' => 'nNKvyR14',
     'charset' => 'utf8',
 

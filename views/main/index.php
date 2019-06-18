@@ -25,6 +25,7 @@ endforeach;
     </div>
 </div>
 <?php
+if($news)
     if($this->context->user_root['root'] == 'admin' || $this->context->user_root['post'] == ['5'] || $this->context->user_root['post'] == '4')
         include 'blocks/modal.php';
 

@@ -82,7 +82,7 @@ Class MainController extends AppController{
         else
             $news = $arr['news']??false;
 
-        if($arr['comments'])
+        if(isset($arr['comments']))
             $comments = Chat :: mesBlock(array_reverse($arr['comments']),$_SESSION['id']);
 
         if(!$id)
@@ -105,10 +105,17 @@ Class MainController extends AppController{
                 }
             exit;
         }
-
+        
         if(!isset($_SESSION['id'])){
             return $this->redirect(['/']);
         }
+        if(!$_GET['type']){
+            return $this->redirect(['/communication?type=general']);
+        }
+        if($_GET['type'] == 'gild' && !$this->user_root['is_party']){
+            return $this->redirect(['/communication?type=general']);
+        }
+        
         return $this->render('communication');
     }
     public function actionCommunicationPrivate(){

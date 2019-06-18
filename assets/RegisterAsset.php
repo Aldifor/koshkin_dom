@@ -30,5 +30,9 @@ class RegisterAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        // 'yii\bootstrap4\BootstrapAsset',
+        // 'yii\bootstrap4\BootstrapPluginAsset',
+        'grozzzny\depends\bootstrap4\Bootstrap4Asset',
+        'grozzzny\depends\bootstrap4\Bootstrap4PluginAsset',
     ];
 }

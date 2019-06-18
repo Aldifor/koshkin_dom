@@ -27,7 +27,7 @@ class Vk {
     }
             
     public function pubNew($from_group = 0){
-        $message = "{$this->model->title\n}"; 
+        $message = "{$this->model->title}\n"; 
         $message .=  $this->model->body;
         if($this->model->img){
             $url = $this->url.'photos.getWallUploadServer?';

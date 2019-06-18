@@ -5,24 +5,24 @@ var reg_smile_id = /%.+%/;
 var to_us;
 var is_socket = false;
 
-$(document).ready(function(){
+$(document).ready(function(e){
     user_id = $('#user_id').attr('data-user');
-    if( $_GET('id') !== ''){
-        to_us = $_GET('id');
+    to_us = $_GET('id');
+    if(to_us){
         type_chat = 'private';
-        // out_content(type_chat, to_us);
-    }else if(document.querySelector('#ulm') === null){
-        type_chat = 'general';
-        // out_content(type_chat,false);
+    }else{
+        type_chat = $_GET('type');
     }
-    if ('WebSocket' in window && (typeof WebSocket === 'function' || typeof WebSocket === 'object')) { // supports WebSocket
-        // socket = new WebSocket('ws://cu45229.tmweb.ru:8080');
-        //socket = new WebSocket('ws://echo.websocket.org/');
-        // socket = new WebSocket('ws://echo.websocket.org/');
-      	socket = new WebSocket('ws://localhost:8081')
-        // console.log(socket);
+    // if( $_GET('id') != ''){
+    //     to_us = $_GET('id');
+    //     type_chat = 'private';
+        
+    // }else if(document.querySelector('#ulm') === null){
+    //     type_chat = 'general';
+        
+    // }
+    socket = new WebSocket('ws://gildkoshkindom.ru:8081');
         socket.onopen = function(e) {
-            is_socket = true;
             if(document.location.pathname == '/communication/private' && !to_us){
                 data = {
                     dialog:true,
@@ -37,30 +37,29 @@ $(document).ready(function(){
                 }
             }
             socket.send(JSON.stringify(data));
+            is_socket = true;
+            // console.log(is_socket);
         };
         socket.onclose = function(e) {
-            is_socket = false;
             console.log('close');
+            is_socket = false;
+            
+            out_content(type_chat, to_us);
+            
         };
         socket.onmessage = function(e){
-            console.log(e);
+            // console.log(e);
             $('#outmessage').append(e.data);
             mes_scrol();
             $('#mes-input').text('');
             tooltip('bottom');
         }
-    } else { // does not support WebSocket
-        is_socket = false;
-    }
+        
+    
+    
     if(!is_socket){
-        if( $_GET('id') != ''){
-            to_us = $_GET('id');
-            type_chat = 'private';
-            out_content(type_chat, to_us);
-        }else if(document.querySelector('#ulm') == null){
-            type_chat = 'general';
-            out_content(type_chat,false);
-        }
+        // console.log(is_socket);
+        
     }
 
     if(document.location.pathname == '/communication/private' && !to_us){
@@ -72,26 +71,26 @@ $(document).ready(function(){
     }
 });
 
-$('button[name="chats"]').on('click',function(){
-    id = this.id;
-    if(id == "clan_chat"){
-        $('#outmessage').html('');
-        type_chat = "gild";
-        this.id = 'general_chat';
-        $(this).html('В общий чат');
-        $('.chat_header').html('Клановый чат');
-        out_content(type_chat,false);
-    }
-    else{
-        $('#outmessage').html('');
-        type_chat = "general";
-        this.id = 'clan_chat';
-        $(this).html('В клановый чат');
-        $('.chat_header').html('Общий чат');
-        out_content(type_chat,false);
-    }
+// $('button[name="chats"]').on('click',function(){
+//     id = this.id;
+//     if(id == "clan_chat"){
+//         $('#outmessage').html('');
+//         type_chat = "gild";
+//         this.id = 'general_chat';
+//         $(this).html('В общий чат');
+//         $('.chat_header').html('Клановый чат');
+//         out_content(type_chat,false);
+//     }
+//     else{
+//         $('#outmessage').html('');
+//         type_chat = "general";
+//         this.id = 'clan_chat';
+//         $(this).html('В клановый чат');
+//         $('.chat_header').html('Общий чат');
+//         out_content(type_chat,false);
+//     }
 
-})
+// })
 
 $('#send').on('click',function(){
     var message = $('#mes-input').html();
@@ -132,7 +131,7 @@ if(message!=""){
 })
 
 function getDialog(){
-    if(!is_socket){
+    if(false){
         $.ajax({
                 type: "POST",
                 url: "?r=main/communication",
@@ -174,7 +173,7 @@ function out_message(){
         });
     }
 }
-function out_content(type_chat, to_us){
+function out_content(type_chat, to_us = false){
     var data = {
         'type':type_chat,
         'to_us':to_us,

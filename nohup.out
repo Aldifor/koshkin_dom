@@ -1,0 +1,97 @@
+Exception 'RuntimeException' with message 'Failed to listen on "tcp://0.0.0.0:8081": Address already in use'
+
+in /var/www/gildkoshkindom.ru/vendor/react/socket/src/TcpServer.php:164
+
+Stack trace:
+#0 /var/www/gildkoshkindom.ru/vendor/react/socket/src/Server.php(36): React\Socket\TcpServer->__construct('tcp://0.0.0.0:8...', Object(React\EventLoop\StreamSelectLoop), Array)
+#1 /var/www/gildkoshkindom.ru/vendor/cboden/ratchet/src/Ratchet/Server/IoServer.php(59): React\Socket\Server->__construct('0.0.0.0:8081', Object(React\EventLoop\StreamSelectLoop))
+#2 /var/www/gildkoshkindom.ru/commands/SocketController.php(21): Ratchet\Server\IoServer::factory(Object(Ratchet\Http\HttpServer), 8081)
+#3 [internal function]: app\commands\SocketController->actionStartSocket(8081)
+#4 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#5 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#6 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/console/Controller.php(148): yii\base\Controller->runAction('start-socket', Array)
+#7 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('start-socket', Array)
+#8 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('socket/start-so...', Array)
+#9 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('socket/start-so...', Array)
+#10 /var/www/gildkoshkindom.ru/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#11 /var/www/gildkoshkindom.ru/yii(20): yii\base\Application->run()
+#12 {main}
+New connection! 89Array
+(
+    [dialog] => 1
+    [us_id] => 3
+)
+Connection 89 has disconnected
+New connection! 134Array
+(
+    [dialog] => 1
+    [us_id] => 3
+)
+Connection 134 has disconnected
+New connection! 137Array
+(
+    [dialog] => 1
+    [us_id] => 3
+)
+Connection 137 has disconnected
+New connection! 140Array
+(
+    [init] => 1
+    [us_id] => 3
+    [to_us] => 7
+    [type] => private
+)
+Array
+(
+    [message] => tughjkl
+    [type] => private
+    [to_us] => 7
+)
+<div class="mes-block mb-1 border-success" id="3">
+                        <div class="row justify-content-between px-2 pt-2">
+                            <div data-toggle="tooltip" class="nicname"
+                                title="">"Эльфийк@</div>
+                        <div class="mes-date" data-toggle="tooltip" class=""
+                            title="08.06">15:57</div>
+                    </div>
+
+                <div class="mes-body px-3 col-10 pb-2" id="121">tughjkl</div>
+            </div>New connection! 153Array
+(
+    [init] => 1
+    [us_id] => 7
+    [type] => general
+)
+An error has occurred: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+The SQL being executed was: SELECT mes.message, mes.id as mes_id, mes.date, us.name, us.id as us_id, us.is_party, us.nicname,
+                    (SELECT item_post FROM post WHERE id = us.post) as post,
+                    (SELECT prof_name FROM profations WHERE id = us.profation) as prof,
+                    (SELECT prof_icon FROM profations WHERE id = us.profation) as prof_icon
+                FROM messages mes, users us WHERE mes.general = 1 and us.id = mes.from_us and private != 1 ORDER BY mes.id  LIMIT 300
+Connection 153 has disconnected
+New connection! 171Array
+(
+    [init] => 1
+    [us_id] => 3
+    [type] => general
+)
+An error has occurred: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+The SQL being executed was: SELECT mes.message, mes.id as mes_id, mes.date, us.name, us.id as us_id, us.is_party, us.nicname,
+                    (SELECT item_post FROM post WHERE id = us.post) as post,
+                    (SELECT prof_name FROM profations WHERE id = us.profation) as prof,
+                    (SELECT prof_icon FROM profations WHERE id = us.profation) as prof_icon
+                FROM messages mes, users us WHERE mes.general = 1 and us.id = mes.from_us and private != 1 ORDER BY mes.id  LIMIT 300
+Connection 171 has disconnected
+New connection! 174Array
+(
+    [init] => 1
+    [us_id] => 3
+    [type] => general
+)
+An error has occurred: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+The SQL being executed was: SELECT mes.message, mes.id as mes_id, mes.date, us.name, us.id as us_id, us.is_party, us.nicname,
+                    (SELECT item_post FROM post WHERE id = us.post) as post,
+                    (SELECT prof_name FROM profations WHERE id = us.profation) as prof,
+                    (SELECT prof_icon FROM profations WHERE id = us.profation) as prof_icon
+                FROM messages mes, users us WHERE mes.general = 1 and us.id = mes.from_us and private != 1 ORDER BY mes.id  LIMIT 300
+Connection 174 has disconnected

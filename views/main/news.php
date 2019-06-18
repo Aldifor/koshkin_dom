@@ -42,6 +42,7 @@
 
 
 <?php
+if($news)
     if($this->context->user_root['root'] == 'admin' || $this->context->user_root['post'] == '5' || $this->context->user_root['post'] == '4')
         include 'blocks/modal.php';
     $this->registerJsFile( '@web/js/scripts/comment_script.js', $options = ['depends'=>['yii\web\YiiAsset','app\assets\AppAsset']]);

@@ -11,7 +11,7 @@ class AppController extends Controller{
     public $user_root;
     public $user_root_sql = 'SELECT root, is_party, admit, post FROM users WHERE id = :id';
     public  function  beforeAction($action){
-        $this->user_root = Yii::$app->db->createCommand($this->user_root_sql)->bindValues([':id' => $_SESSION['id']])->queryAll()[0];
+        if(isset($_SESSION['id']))$this->user_root = Yii::$app->db->createCommand($this->user_root_sql)->bindValues([':id' => $_SESSION['id']])->queryAll()[0];
         $this->navActiv = $action->id;
         if($action->id =='communication-private'){
             $this->navActiv = 'communication';
