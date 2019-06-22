@@ -22,7 +22,6 @@ function logtest(el){
                     type:"POST",
                     data:"logtest="+logtest,
                     success:function(data){
-                        console.log(data);
                         data = jQuery.parseJSON(data);
                         if(data.length!=0){
                             if((data[0]['login'] == logtest)){
