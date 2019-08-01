@@ -15,16 +15,10 @@ use app\controllers\AppController;
 Class MainController extends AppController{
     public $layout = 'admin';
     public $user_root;
-    // public $uri;
     public $vkParams;
 
     public function beforeAction($action){
-        $this->vkParams = [
-            'group_id' => '182016682',
-            'token' => 'b518b18c594c480b462ee0835a08b8dea5061a43bc8c8b2610faf85291af656b1548836d52e7b9612c78f',
-            'client_id' => '6995449',
-            'client_secret' => '9SHh0a9Ke6vaPwb2SYlD',
-        ];
+        $this->vkParams = Yii::$app->params['vkParams'];
 
         $this->user_root = Yii::$app->db->createCommand($this->user_root_sql)->bindValues([':id' => $_SESSION['id']])->queryAll()[0];
         $this->navbar = NavbarAdmin::find()->asArray()->all();

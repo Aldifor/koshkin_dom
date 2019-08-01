@@ -22,7 +22,7 @@
         </div>
     <?php endif;?>
 
-    <?php $form = ActiveForm::begin(['id' => 'creat_new','options' => ['enctype/form-data']] ) ?>
+    <?php $form = ActiveForm::begin(['id' => 'creat_new','method'=>'get','options' => ['enctype/form-data']] ) ?>
         
         <?= $form->field($model, 'title')->input('text',['class'=>'form-control border-success']) ?>
 
